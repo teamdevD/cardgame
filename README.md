@@ -1,5 +1,9 @@
 # Recursion Frontend CardGame
 
+## how to check dev tool
+run this command
+`npm run dev`
+
 ## how to build
 run this command.
 `npm run build`
