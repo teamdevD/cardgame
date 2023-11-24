@@ -11,3 +11,6 @@ run this command.
 ## how to start
 After build, run this command.
 `npm run preview`
+## participations
+- Taiga2022
+- Sekky
