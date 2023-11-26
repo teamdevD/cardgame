@@ -48,12 +48,12 @@ export abstract class Card {
 
     /**
      * カードのアトラスフレーム名を取得します。
-     * 表向きの場合はカードのフレーム名、裏向きの場合は空の文字列を返します。
+     * 表向きの場合はカードのフレーム名、裏向きの場合はback文字列を返します。
      */
     getAtlasFrame(): string {
         return !this.faceDown
-            ? `card-${this.suit}-${this.rank}.png`
-            : '';
+            ? `${this.suit}${this.rank}`
+            : 'back';
     }
 
     /**

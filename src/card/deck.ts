@@ -1,34 +1,6 @@
-import Card from './card';
+import {Card} from './card';
+import {GAME} from "../constants/game"
 
-// ゲームの定数
-const GAME = {
-  CARD: {
-    SUITS: ['Spades', 'Clubs', 'Hearts', 'Diamonds'],
-    RANKS: [
-      'A',
-      '2',
-      '3',
-      '4',
-      '5',
-      '6',
-      '7',
-      '8',
-      '9',
-      '10',
-      'J',
-      'Q',
-      'K'
-    ],
-    WIDTH: 140,
-    HEIGHT: 190,
-    FLIP_TIME: 800,
-    ATLAS_KEY: 'cards',
-    BACK_KEY: 'cardBack',
-  },
-  DECK: {
-    POKER_HEIGHT: 600
-  },
-}
 
 export default class Deck<T extends Card> {
   /**
@@ -63,11 +35,13 @@ export default class Deck<T extends Card> {
       }
     }
   }
+  /*
+  *デッキの中身を表示 
+  */
   showDeck():void{
     for (let i = 0; i< this.cards.length ; i++){
-      console.log(this.cards[i].rank, this.cards[i].suit);
+      console.log(this.cards[i].getRank(), this.cards[i].getSuit());
     }
- 
   }
   /**
    * カードリストをシャッフルします。
@@ -87,11 +61,15 @@ export default class Deck<T extends Card> {
    * カードを1枚引きます。
    * @returns カードのインスタンスまたは undefined
    */
-  drawOne(): Card | undefined {
+  drawOne(): T {
     if (this.isEmpty()) {
       throw new Error('デッキにカードがありません。');
     }
-    return this.cards.pop();
+    const card =  this.cards.pop();
+    if(card === undefined){
+      throw new Error('デッキにカードがありません。');
+    }
+    return card;
   }
 
   /**
