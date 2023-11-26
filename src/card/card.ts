@@ -1,93 +1,65 @@
+export abstract class Card {
+    /**
+     * カードクラス
+     * @param suit スート（マーク）
+     * @param rank ランク（A, 1, 2, ..., J, Q, K）
+     * @example
+     * const card = new Card('Hearts', 'A');
+     * card.faceDown = true; // カードを裏向きに設定
+     * const frame = card.getAtlasFrame(); // カードのフレーム名を取得
+     * const value = card.getRankNumber('blackjack'); // カードの評価値を取得
+     */
+    protected suit: string;
+    protected rank: string;
+    protected faceDown = false;
 
-export default class Card {
-  readonly #suit: string;
-
-  readonly #rank: string;
-
-  #faceDown = false;
-
-  constructor(suit: string, rank: string) {
-    this.#suit = suit;
-    this.#rank = rank;
-  }
-
-  get suit(): string {
-    return this.#suit;
-  }
-
-  get rank(): string {
-    return this.#rank;
-  }
-
-  set faceDown(faceDown: boolean) {
-    this.#faceDown = faceDown;
-  }
-
-  get faceDown(): boolean {
-    return this.#faceDown;
-  }
-
-  getAtlasFrame(): string {
-    return !this.#faceDown
-      ? `card-${this.#suit}-${this.#rank}.png`
-      : '';
-  }
-
-  getRankNumber(gameType: string): number {
-    let rankToNum;
-    switch (gameType) {
-      case 'blackjack':
-        rankToNum = {
-          A: 11,
-          '2': 2,
-          '3': 3,
-          '4': 4,
-          '5': 5,
-          '6': 6,
-          '7': 7,
-          '8': 8,
-          '9': 9,
-          '10': 10,
-          J: 10,
-          Q: 10,
-          K: 10
-        };
-        break;
-      case 'war':
-        rankToNum = {
-          A: 14,
-          '2': 2,
-          '3': 3,
-          '4': 4,
-          '5': 5,
-          '6': 6,
-          '7': 7,
-          '8': 8,
-          '9': 9,
-          '10': 10,
-          J: 11,
-          Q: 12,
-          K: 13
-        };
-        break;
-      default:
-        rankToNum = {
-          A: 1,
-          '2': 2,
-          '3': 3,
-          '4': 4,
-          '5': 5,
-          '6': 6,
-          '7': 7,
-          '8': 8,
-          '9': 9,
-          '10': 10,
-          J: 11,
-          Q: 12,
-          K: 13
-        };
-        break;
+    constructor(suit: string, rank: string) {
+        this.suit = suit;
+        this.rank = rank;
     }
-    return rankToNum[this.#rank] ?? 0; // if rankToNum[this.rank] is undefined, this function returns 0
-  }
+
+    /**
+     * カードのスート（マーク）を取得します。
+     */
+    getSuit(): string {
+        return this.suit;
+    }
+
+    /**
+     * カードのランク（数字またはA,J,Q,K）を取得します。
+     */
+    getRank(): string {
+        return this.rank;
+    }
+
+    /**
+     * カードを表向きまたは裏向きに設定します。
+     */
+    setFaceDown(faceDown: boolean): void {
+        this.faceDown = faceDown;
+    }
+
+    /**
+     * カードが表向きかどうかを示す値を取得します。
+     */
+    getFaceDown(): boolean {
+        return this.faceDown;
+    }
+
+    /**
+     * カードのアトラスフレーム名を取得します。
+     * 表向きの場合はカードのフレーム名、裏向きの場合は空の文字列を返します。
+     */
+    getAtlasFrame(): string {
+        return !this.faceDown
+            ? `card-${this.suit}-${this.rank}.png`
+            : '';
+    }
+
+    /**
+     * カードの評価値を取得します。
+     * @param gameType ゲームタイプ（'blackjack'など）
+     * @returns カードの評価値
+     */
+    abstract getRankNum(): number;
 }
