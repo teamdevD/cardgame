@@ -45,6 +45,7 @@ export class BlackJackScene extends Phaser.Scene{
     create(){
         // deckをシャッフル
         this.deck.shuffle()
+        //フレームを取得
         const frames = this.cardScene.textures.get(atlasText).getFrameNames();
 
     }
