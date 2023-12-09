@@ -3,7 +3,7 @@ import {Scene} from 'phaser';
 export default class BrackJackScene extends Scene {
 
     constructor() {
-        super({ key: 'BrackJackScene', active: false });
+        super({ key: 'BrackJack', active: false });
       }
 
     preload(){

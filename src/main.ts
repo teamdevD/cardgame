@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import IndexScene  from "./scene/index";
-import BrackJackScene from "./scene/game";
+import BrackJack from "./scene/game";
 
 
 const scale: Phaser.Types.Core.ScaleConfig = {
@@ -13,7 +13,11 @@ const scale: Phaser.Types.Core.ScaleConfig = {
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   scale: scale,
-  scene: [IndexScene,BrackJackScene],
+  scene: [IndexScene,BrackJack],
+  parent: 'phaser',
+	dom: {
+		createContainer: true
+	}
 };
 
 new Phaser.Game(config);

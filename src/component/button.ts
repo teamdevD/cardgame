@@ -18,11 +18,11 @@ export default class Button extends GameObjects.Text{
         this.x=800;
         this.y=550
         this.backgroundColor='#111'
-        this.fontSize=44
+        this.fontSize=40
 
         this.button=scene.add.text(this.x,this.y,label,{fontSize:this.fontSize})
         .setOrigin(0.5)
-        .setPadding(20)
+        .setPadding(10)
         .setInteractive({ useHandCursor: true })
         .setStyle({backgroundColor: this.backgroundColor})
         .on('pointerdown', () => callback())
